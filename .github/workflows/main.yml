@@ -1,0 +1,18 @@
+name: Run Testim Tests
+on:
+  push:
+    branches: [ main ]  # Se ejecuta al hacer push a "main"
+  pull_request:
+    branches: [ main ]  # Se ejecuta en PRs hacia "main"
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute Testim Test Suite
+        uses: testimio/github-action@v1
+        with:
+          testim-token: ${{ secrets.TESTIM_TOKEN }}
+          suite-id: "PRUEBA_01"  # Reemplaza con el ID de tu suite en Testim
+            branch: "main"  # Rama donde están las pruebas
+          results-format: "junit"  # Formato del reporte (opcional)
